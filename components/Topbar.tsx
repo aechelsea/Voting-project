@@ -12,9 +12,9 @@ const Topbar = (props: any) => {
           />
         </div>
       </div>
-      <p className="fixed bottom-0 inset-x-0 text-center mb-5 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
+      <footer className="fixed bottom-0 inset-x-0 text-center mb-5 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
         Powerby: Finstable-Trainee1
-      </p>
+      </footer>
     </nav>
   );
 };
