@@ -12,7 +12,7 @@ const ConnectForm = () => {
           className="sm:mx-auto object-cover md:h-full sm:w-48"
         />
         <div className="flex justify-center">
-          <p className="md:text-3xl text-sm font-bold text-white text-center mt-16 mb-7">
+          <p className="md:text-3xl text-sm font-bold text-white text-center my-10">
             Connect to <a className="text-darkorange">Metamask</a>
           </p>
         </div>
