@@ -12,14 +12,9 @@ const Topbar = (props: any) => {
           />
         </div>
       </div>
-      {/* <div className="hidden space-x-6 lg:flex text-black"> */}
-      {/* <button
-          className="text-blue-700 hover:bg-blue-200 border border-indigo-600  font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-white"
-          type="button"
-        >
-          {test}
-        </button> */}
-      {/* </div> */}
+      <p className="fixed bottom-0 inset-x-0 text-center mb-5 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
+        Powerby: Finstable-Trainee1
+      </p>
     </nav>
   );
 };
