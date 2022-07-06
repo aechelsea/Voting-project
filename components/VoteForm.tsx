@@ -3,10 +3,10 @@ import React from "react";
 const VoteForm = () => {
   return (
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
-      <h1 className="font-bold italic text-3xl pb-5 text-fuchsia-500">
+      <h1 className="font-bold italic text-3xl pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand?
       </h1>
-      <p className="text-center text-lg text-blue-500 pb-2">
+      <p className="text-center text-lg text-blue-500 pb-2 mt-2">
         Choose the person
       </p>
       <div className="flex justify-around">
