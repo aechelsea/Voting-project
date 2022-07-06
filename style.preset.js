@@ -11,10 +11,15 @@ module.exports = {
         bdpurple: "#545088",
         tpurple: "#3400FF",
         tpurples: "#5C39E5",
+        bluebg: "#0F0C52",
+        bdbox1: "#F675F9",
+        bdbox2: "#5709FF",
+        bdbox3: "#267DFF",
+        torange: "#FC9D2D",
         },
 
         boxShadow: {
-          'eshadow': '10px 1px 25px 1px rgba(0, 0, 0, 0.3)',
+          'eshadow': '0px 0px 4px 5px rgba(0, 0, 0, 0.3)',
         }
     },
   },

@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
 import ConnectForm from "../components/ConnectForm";
 import Topbar from "../components/Topbar";
+import Topbars from "../components/Topbars";
+import VoteForm from "../components/VoteForm";
 
 const Home: NextPage = () => {
   return (
