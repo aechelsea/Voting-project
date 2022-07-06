@@ -1,16 +1,16 @@
 import React from "react";
-import Claim from "../components/Claim";
+import SuccessForm from "../components/SuccessForm";
 import Topbars from "../components/Topbars";
 
-const claim = () => {
+const success = () => {
   return (
     <div className="bg-darkbg min-h-screen">
       <Topbars />
       <div className="flex justify-center w-full px-16 relative">
-        <Claim />
+        <SuccessForm />
       </div>
     </div>
   );
 };
 
-export default claim;
+export default success;
