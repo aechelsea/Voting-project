@@ -9,20 +9,19 @@ import { getEthereum, getWalletAddress } from "../services/wallet-services";
 const Home: NextPage = () => {
   const [address, setAddress] = useState<string | null>(null);
   const accountData = async () => {
-    const addr = getWalletAddress() //user address
+    const addr = getWalletAddress(); //user address
     // console.log(addr);
-    setAddress(addr)
-  }
+    setAddress(addr);
+  };
   useEffect(() => {
-    accountData()
+    accountData();
     //show realtime
     const handleAccountChange = (addresses: string[]) => {
       setAddress(addresses[0]);
       accountData();
     };
     getEthereum()?.on("accountsChanged", handleAccountChange);
-
-  })
+  });
   return (
     <div className="bg-darkbg min-h-screen">
       {address ? (
@@ -32,12 +31,14 @@ const Home: NextPage = () => {
             <VoteForm />
           </div>
         </div>
-      ) :
-        <div className="flex justify-center w-full px-16 relative mb-14">
+      ) : (
+        <div className="bg-darkbg min-h-screen">
           <Topbar />
-          <ConnectForm />
+          <div className="flex justify-center w-full px-16 relative">
+            <ConnectForm />
+          </div>
         </div>
-      }
+      )}
     </div>
   );
 };
