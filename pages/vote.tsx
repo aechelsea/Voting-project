@@ -6,7 +6,7 @@ const Vote = () => {
   return (
     <div className="bg-darkbg min-h-screen">
       <Topbars />
-      <div className="่justify-center w-full px-16 relative">
+      <div className="่flex justify-center w-full px-16">
         <VoteForm />
       </div>
     </div>

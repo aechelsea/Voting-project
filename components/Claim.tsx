@@ -7,11 +7,11 @@ const claim = () => {
         Claim Rewards
       </h1>
       <p className="md:text-lg text-sm font-bold text-gray-600 text-center my-10">
-        Rewards <a className="text-white">= 9.99 ETH</a>
+        Rewards <a className="text-white md:text-lg text-sm">= 9.99 ETH</a>
         <img className="inline" src="eth.png" alt="eth" width="40px" />
       </p>
       <div className="flex justify-center">
-        <button className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg text-xs font-bold md:px-8 py-2 sm:px-8 mt-6">
+        <button className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-2 px-4 mt-6">
           ACCEPT
         </button>
       </div>

@@ -16,8 +16,8 @@ const Topbars = () => {
         alt="eth"
         width="64px"
       />
-      <div className="rounded-full bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold md:px-16 py-5 sm:px-10 mt-4"></div>
-      <footer className="fixed bottom-0 inset-x-0 text-center mb-5 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
+      <div className="rounded-full md:px-16 sm:px-16 py-5 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold "></div>
+      <footer className="fixed bottom-0 inset-x-0 text-center mb-2 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
         Powerby: Finstable-Trainee1
       </footer>
     </nav>
