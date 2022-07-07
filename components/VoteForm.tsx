@@ -1,6 +1,8 @@
 import React from "react";
 
 const VoteForm = () => {
+  
+
   return (
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
       <h1 className="font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
@@ -17,7 +19,7 @@ const VoteForm = () => {
             alt="Miss-phrae"
           />
           <p className="text-center md:text-base text-xs font-bold text-torange mt-6">
-            MGT41 - มิสแกรนด์แพร่
+            MGT41 - มิสแกรนด์แพร่!!!!
           </p>
           <div className="flex justify-center">
             <button className="rounded-full md:text-xl text-xs font-bold px-8 -py-1 mb-2 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white ">

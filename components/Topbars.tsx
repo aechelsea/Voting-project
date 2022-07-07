@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getEthereum, getWalletAddress } from "../services/wallet-services";
 
 const Topbars = () => {
+  const [address, setAddress] = useState<string | null>(null);
+  const accountData = async () => {
+    const addr = getWalletAddress();
+    setAddress(addr);
+  }
+
+  useEffect(() => {
+    accountData();
+    const handleAccountChange = (addresses: string[]) => {
+      setAddress(addresses[0]);
+      accountData();
+    };
+    getEthereum()?.on("accountsChanged", handleAccountChange);
+  })
   return (
     <nav className="flex justify-between items-center px-20 py-4 bg-darkbg">
       <div>
@@ -16,7 +31,9 @@ const Topbars = () => {
         alt="eth"
         width="64px"
       />
-      <div className="rounded-full md:px-16 sm:px-16 px-10 py-4 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold "></div>
+      <div className="rounded-full md:px-16 sm:px-16 px-10 py-4 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold ">
+        <p>{address?.slice(0, 5) + `...` + address?.slice(-4)}</p>
+      </div>
       <footer className="fixed bottom-0 inset-x-0 text-center mb-2 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
         Powerby: Finstable-Trainee1
       </footer>
