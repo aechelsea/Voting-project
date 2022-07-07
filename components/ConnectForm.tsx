@@ -19,8 +19,9 @@ const ConnectForm = () => {
   return (
     <div className="max-w-md mx-auto rounded-3xl shadow-eshadow shadow-blueshadow w-1/3 py-5 px-10 mt-10 bg-lightbg">
       {address ? (
-        <p>test</p>
+        <Link href={"/vote"}></Link>
       ) : (
+        // <a href="/vote"></a>
         <div className="flex flex-col justify-center">
           <div>
             <img
