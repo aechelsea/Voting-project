@@ -17,6 +17,7 @@ module.exports = {
         bdbox3: "#267DFF",
         torange: "#FC9D2D",
         blackb: "#0D0B26",
+        bdtoken: "#00E0FF",
         },
 
         boxShadow: {

@@ -1,14 +1,11 @@
-import { ethers } from "ethers";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import {
-  connectWallet,
-  getEthereum,
-  getWalletAddress,
-} from "../services/wallet-services";
-import Topbar from "./Topbar";
+import { connectWallet, getWalletAddress } from "../services/wallet-services";
 
 const ConnectForm = () => {
   const [address, setAddress] = useState<String | null>(null);
+
+  console.log(address);
 
   useEffect(() => {
     const addr = getWalletAddress();
@@ -30,14 +27,18 @@ const ConnectForm = () => {
           </p>
         </div>
       </div>
-      <div className="flex justify-center">
-        <button
-          className="rounded-full bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold md:px-16 py-3 sm:px-8 mt-4"
-          onClick={connectWallet}
-        >
-          Connect
-        </button>
-      </div>
+      {address ? (
+        <p>test</p>
+      ) : (
+        <div className="flex justify-center">
+          <button
+            className="rounded-full bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold md:px-16 py-3 sm:px-8 mt-4"
+            onClick={connectWallet}
+          >
+            Connect
+          </button>
+        </div>
+      )}
     </div>
   );
 };
