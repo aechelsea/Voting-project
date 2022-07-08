@@ -1,5 +1,38 @@
 import React from "react";
 
+const data = [
+  {
+    id: 0,
+    number: "MGT12 - มิสแกรนด์ชุมพร",
+    name: "Charlotte",
+    image: "chumpon.webp",
+  },
+  {
+    id: 1,
+    number: "MGT01 - มิสแกรนด์กรุงเทพมหานคร",
+    name: "Engfa",
+    image: "bangkok.webp",
+  },
+  {
+    id: 2,
+    number: "MGT41 - มิสแกรนด์แพร่",
+    name: "Marima",
+    image: "phrae.webp",
+  },
+  {
+    id: 3,
+    number: "MGT03- มิสแกรนด์ กาญจนบุรี",
+    name: "Prada",
+    image: "kanchanaburi.webp",
+  },
+  {
+    id: 4,
+    number: "MGT42 - มิสแกรนด์ภูเก็ต",
+    name: "Heidi",
+    image: "phuket.webp",
+  },
+];
+
 const SuccessForm = () => {
   return (
     <div className="flex justify-center">
@@ -14,20 +47,6 @@ const SuccessForm = () => {
           <p className="text-white text-center">Your vote has been success</p>
         </h1>
       </div>
-      {/* <div className="">
-        <img
-          title="Click to connect metamask"
-          src="check.png"
-          alt="check-logo"
-          className="sm:mx-auto object-cover md:h-32 md:w-32 sm:w-32 sm:h-32 w-32 h-32"
-        />
-        <div className="flex justify-center">
-          <h1 className="md:text-lg text-sm font-bold text-white text-center my-10">
-            Thank You!
-            <p className="text-white text-center">Your vote has been success</p>
-          </h1>
-        </div>
-      </div> */}
     </div>
   );
 };
