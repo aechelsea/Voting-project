@@ -1,7 +1,28 @@
-import React from "react";
+import { Signer } from "ethers";
+import React, { useEffect } from "react";
+import { getProvider, getSigner } from "../services/wallet-services";
+import { Vote, Vote__factory } from "../typechain";
 
 const VoteForm = () => {
-  
+  const candidate = async () => {
+    const signer = getSigner()
+    const provider = getProvider();
+    const vote = Vote__factory.connect('0xAE136Fe5061DDD0726632bbF8a4Ad723a788f1c4', provider).connect(signer) as Vote;
+
+    // console.log("reward",await (await vote.getReward()).toString());
+    console.log("vote",await (await vote.getReward()).toString());
+
+    const tx = await vote.vote(0);
+    console.log(tx);
+    
+  }
+
+
+  useEffect(() => {
+    candidate()
+
+  }, [])
+
 
   return (
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
