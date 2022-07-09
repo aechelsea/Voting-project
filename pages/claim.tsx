@@ -5,7 +5,7 @@ import Topbar from "../components/Topbar";
 import Topbars from "../components/Topbars";
 import { getEthereum, getWalletAddress } from "../services/wallet-services";
 
-const claim = () => {
+const ClaimPage = () => {
   const [address, setAddress] = useState<string | null>(null);
   const accountData = async () => {
     const addr = getWalletAddress(); //user address
@@ -31,19 +31,16 @@ const claim = () => {
             <Claim />
           </div>
         </div>
-      )
-        :
-        (
-          <div className="bg-darkbg min-h-screen">
-            <Topbar />
-            <div className="flex justify-center w-full px-16 relative">
-              <ConnectForm />
-            </div>
+      ) : (
+        <div className="bg-darkbg min-h-screen">
+          <Topbar />
+          <div className="flex justify-center w-full px-16 relative">
+            <ConnectForm />
           </div>
-        )
-      }
+        </div>
+      )}
     </div>
   );
 };
 
-export default claim;
+export default ClaimPage;
