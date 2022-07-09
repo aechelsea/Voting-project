@@ -1,4 +1,4 @@
-export const SliderData = [
+export const FirstData = [
   {
     id: 0,
     number: "MGT12 - มิสแกรนด์ชุมพร",
@@ -19,14 +19,35 @@ export const SliderData = [
   },
   {
     id: 3,
-    number: "MGT03- มิสแกรนด์ กาญจนบุรี",
+    number: "MGT12 - มิสแกรนด์กาญจนบุรี",
     name: "Prada",
     image: "kanchanaburi.webp",
   },
   {
     id: 4,
-    number: "MGT42 - มิสแกรนด์ภูเก็ต",
+    number: "MGT01 - มิสแกรนด์ภูเก็ต",
     name: "Heidi",
     image: "phuket.webp",
+  },
+];
+
+export const SecData = [
+  {
+    id: 3,
+    number: "MGT12 - มิสแกรนด์กาญจนบุรี",
+    name: "Prada",
+    image: "kanchanaburi.webp",
+  },
+  {
+    id: 4,
+    number: "MGT01 - มิสแกรนด์ภูเก็ต",
+    name: "Heidi",
+    image: "phuket.webp",
+  },
+  {
+    id: 5,
+    number: "MGT41 - มิสแกรนด์แพร่",
+    name: "Marima",
+    image: "phrae.webp",
   },
 ];

@@ -31,7 +31,7 @@ const Topbars = () => {
         alt="eth"
         width="64px"
       />
-      <div className="rounded-full md:px-8 sm:px-16 px-10 py-1 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold ">
+      <div className="rounded-full md:px-8 sm:px-8 px-ค py-1 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold ">
         <p>{address?.slice(0, 5) + `...` + address?.slice(-4)}</p>
       </div>
       <footer className="fixed bottom-0 inset-x-0 text-center mb-2 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
