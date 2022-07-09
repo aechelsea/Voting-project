@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       accountData();
     };
     getEthereum()?.on("accountsChanged", handleAccountChange);
-  });
+  },[]);
   return (
     <div className="bg-darkbg min-h-screen">
       {address ? (
