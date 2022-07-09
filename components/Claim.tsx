@@ -3,27 +3,35 @@ import React, { useEffect, useState } from "react";
 import { getProvider, getSigner } from "../services/wallet-services";
 import { Vote__factory } from "../typechain";
 
-const claim = () => {
-  const [rewards, setRewards] = useState('');
+const Claim = () => {
+  const [rewards, setRewards] = useState("");
   const reward = async () => {
     const signer = getSigner();
-    const claim = await Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    const claim = await Vote__factory.connect(
+      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      getProvider()
+    ).connect(signer);
     const getReward = await claim.getReward();
     // console.log('reward',getReward.toString());
-    setRewards(getReward.div(10 **10).div(10 **8).toString())
-
-  }
-  const claimReward = async() =>{
+    setRewards(
+      getReward
+        .div(10 ** 10)
+        .div(10 ** 8)
+        .toString()
+    );
+  };
+  const claimReward = async () => {
     const signer = getSigner();
-    const claim = await Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    const claim = await Vote__factory.connect(
+      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      getProvider()
+    ).connect(signer);
     const claimReward = await claim.claimReward();
-
-  }
+  };
   console.log(rewards);
   useEffect(() => {
-    reward()
-  }, [])
-
+    reward();
+  }, []);
 
   return (
     <div className="justify-center px-16 p-8 w-80 bg-gradient-to-r from-sky-900 to-darkblue-500 border border-cyan-400 rounded-3xl">
@@ -43,9 +51,9 @@ const claim = () => {
       </p>
 
       <div className="flex justify-center">
-        <button 
-        className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-2 px-4 mt-6"
-        onClick={()=>claimReward()}
+        <button
+          className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-2 px-4 mt-6"
+          onClick={() => claimReward()}
         >
           ACCEPT
         </button>
@@ -54,4 +62,4 @@ const claim = () => {
   );
 };
 
-export default claim;
+export default Claim;
