@@ -1,14 +1,28 @@
 import { ethers } from "ethers";
-import React from "react";
-import { getProvider } from "../services/wallet-services";
-import { Vote, Vote__factory } from "../typechain";
+import React, { useEffect, useState } from "react";
+import { getProvider, getSigner } from "../services/wallet-services";
+import { Vote__factory } from "../typechain";
 
 const claim = () => {
-  const reward = async()=>{
-    const claim = Vote__factory.connect('0xD94DB417C0b658C41f6Ba0465Ab8630D8e2dfB95',getProvider()!) as Vote ;
-    console.log(claim.address);
+  const [rewards, setRewards] = useState('');
+  const reward = async () => {
+    const signer = getSigner();
+    const claim = await Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    const getReward = await claim.getReward();
+    // console.log('reward',getReward.toString());
+    setRewards(getReward.div(10 **10).div(10 **8).toString())
+
   }
-  reward()
+  const claimReward = async() =>{
+    const signer = getSigner();
+    const claim = await Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    const claimReward = await claim.claimReward();
+
+  }
+  console.log(rewards);
+  useEffect(() => {
+    reward()
+  }, [])
 
 
   return (
@@ -24,12 +38,15 @@ const claim = () => {
         />
       </div>
       <p className="md:text-lg text-sm font-bold text-gray-600 text-center my-10">
-        Rewards <p className="text-white text-sm">{}</p>
+        Rewards <p className="text-white text-sm">{rewards} ACT</p>
         <img className="inline" src="eth.png" alt="eth" width="40px" />
       </p>
 
       <div className="flex justify-center">
-        <button className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-2 px-4 mt-6">
+        <button 
+        className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-2 px-4 mt-6"
+        onClick={()=>claimReward()}
+        >
           ACCEPT
         </button>
       </div>

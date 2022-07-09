@@ -1,7 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Vote__factory } from "../typechain";
+import { getProvider, getSigner } from "../services/wallet-services";
+import { toast } from 'react-toastify';
 
 const data = [
   {
@@ -37,6 +40,27 @@ const data = [
 ];
 
 const VoteForm = () => {
+  const [check,setCheck] = useState(true)
+  const Voter = async (id : number) => {
+    const signer = getSigner();
+    const vote = Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    // console.log('vote',await (await vote.getReward()).toString());
+    const tx = await vote.vote(id);
+    console.log('id',id);
+    console.log('tx',tx);
+    toast.success('Thank you for voting');
+  }
+  const checkVote = async()=>{
+    const signer = getSigner();
+    const vote = Vote__factory.connect("0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E", getProvider()).connect(signer);
+    const check = await (await vote.voters(await signer.getAddress())).voted ;
+    console.log('check',check);
+    setCheck(check)
+    
+  }
+  useEffect(()=>{
+    checkVote();
+  },[])
   var settings = {
     infinite: false,
     speed: 1000,
@@ -94,8 +118,10 @@ const VoteForm = () => {
         Choose the person
       </p>
       <Slider {...settings}>
-        {data.map((detail) => (
-          <div className="flex flex-col sm:flex-row justify-around ml-2 sm:ml-4 md:ml-4 lg:ml-4 xl:ml-28">
+        {data.map((detail,index) => (
+          <div
+          key={index} 
+          className="flex flex-col sm:flex-row justify-around ml-2 sm:ml-4 md:ml-4 lg:ml-4 xl:ml-28">
             <div className="w-28 h-64 sm:w-28 sm:h-64 md:w-40 md:h-80 lg:w-60 lg:h-96 xl:w-72 xl:h-96 bg-lightbg border border-bdbox1 rounded-3xl">
               <img
                 src={detail.image}
@@ -106,7 +132,13 @@ const VoteForm = () => {
                 {detail.number}
               </p>
               <div className="flex justify-center">
-                <button className="fixed bottom-5 rounded-full transition duration-300 hover:scale-110 md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white ">
+                <button 
+                className={`fixed bottom-5 rounded-full transition duration-300  md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white 
+                ${check ? 'cursor-not-allowed bg-gray-100 hover:bg-gray-400':'hover:scale-110 cursor-pointer' }` }
+                onClick={()=>Voter(detail.id)}
+                disabled={check}
+                type="button"
+                >
                   Vote
                 </button>
               </div>
