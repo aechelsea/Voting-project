@@ -25,7 +25,10 @@ const Topbars = () => {
           className="hidden sm:block md:w-[210px] md:h-[90px] sm:w-[210px] sm:h-[90px] w-[130px] h-[48px] md:-ml-16 -ml-16"
         />
         <div className="lg:mt-6 md:mt-6 sm:mt-6">
-          <button className="rounded-xl mt-4 ml-auto md:px-8 sm:px-8 px-2 py-1 bg-orange-400  text-white md:text-base text-xs font-bold ">
+          <button
+            className="rounded-xl mt-4 ml-auto md:px-8 sm:px-8 px-2 py-1 bg-orange-400  text-white md:text-base text-xs font-bold "
+            onClick={() => (location.href = "/claim")}
+          >
             Claim
           </button>
         </div>

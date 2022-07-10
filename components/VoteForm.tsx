@@ -87,24 +87,10 @@ const VoteForm = () => {
     setCheck(check);
   };
 
-  const [idInterval, setIdInterval] = useState<any>();
-
-  const handleFetch = () => {
-    if (idInterval) {
-      clearInterval(idInterval);
-      setIdInterval(null);
-    }
-    const id = setInterval(() => {
-      getTimestamp();
-    }, 1000);
-    setIdInterval(id);
-  };
-
   useEffect(() => {
     checkVote();
     // getTimestamp();
-    // setInterval(getTimestamp(), 1000);
-    handleFetch();
+    setInterval(getTimestamp, 1000);
   }, []);
 
   var settings = {
@@ -168,10 +154,7 @@ const VoteForm = () => {
       </p>
       <Slider {...settings}>
         {data.map((detail, index) => (
-          <div
-            key={index}
-            className="flex flex-col sm:flex-row ml-2 md:ml-4 lg:ml-4 xl:ml-28"
-          >
+          <div key={index} className="flex flex-col sm:flex-row ml-2 md:ml-16">
             <div className="w-28 h-64 sm:w-28 sm:h-64 md:w-40 md:h-80 lg:w-60 lg:h-96 xl:w-72 xl:h-96 bg-lightbg border border-bdbox1 rounded-3xl">
               <img
                 src={detail.image}
