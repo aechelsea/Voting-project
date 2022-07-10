@@ -41,6 +41,9 @@ const data = [
 
 const VoteForm = () => {
   const [check, setCheck] = useState(true);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const Voter = async (id: number) => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
@@ -53,6 +56,26 @@ const VoteForm = () => {
     console.log("tx", tx);
     toast.success("Thank you for voting");
   };
+
+  const getTimestamp = async () => {
+    const signer = getSigner();
+    const vote = Vote__factory.connect(
+      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      getProvider()
+    ).connect(signer);
+    // console.log('vote',await (await vote.getReward()).toString());
+    const timestamp = await await vote.getTimestamp();
+    const time = timestamp.div(10 ** 3).toNumber();
+    const getTime = new Date(time);
+    const hr = getTime.getHours();
+    const minute = getTime.getMinutes();
+    const sec = getTime.getSeconds();
+    setHours(hr);
+    setMinutes(minute);
+    setSeconds(sec);
+    console.log("timestamp", time);
+  };
+
   const checkVote = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
@@ -63,9 +86,27 @@ const VoteForm = () => {
     console.log("check", check);
     setCheck(check);
   };
+
+  const [idInterval, setIdInterval] = useState<any>();
+
+  const handleFetch = () => {
+    if (idInterval) {
+      clearInterval(idInterval);
+      setIdInterval(null);
+    }
+    const id = setInterval(() => {
+      getTimestamp();
+    }, 1000);
+    setIdInterval(id);
+  };
+
   useEffect(() => {
     checkVote();
+    // getTimestamp();
+    // setInterval(getTimestamp(), 1000);
+    handleFetch();
   }, []);
+
   var settings = {
     infinite: false,
     speed: 1000,
@@ -116,8 +157,11 @@ const VoteForm = () => {
 
   return (
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
-      <h1 className="font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
+      <h1 className="flex font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand ?
+        <p className="text-white text-xl ml-auto">
+          {hours}:{minutes}:{seconds}
+        </p>
       </h1>
       <p className="text-center md:text-lg text-sm text-blue-500 pb-2 mt-2">
         Choose the person
