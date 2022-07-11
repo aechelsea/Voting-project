@@ -44,6 +44,9 @@ const VoteForm = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [days,setDays] = useState(0)
+
+  const [time, setTime] = useState(Date.now());
 
   const Voter = async (id: number) => {
     const signer = getSigner();
@@ -65,17 +68,37 @@ const VoteForm = () => {
       getProvider()
     ).connect(signer);
     // console.log('vote',await (await vote.getReward()).toString());
-    const timestamp = await await vote.getTimestamp();
-    const time = timestamp.div(10 ** 3).toNumber();
-    const getTime = new Date(time);
-    const hr = getTime.getHours();
-    const minute = getTime.getMinutes();
-    const sec = getTime.getSeconds();
-    setHours(hr);
-    setMinutes(minute);
-    setSeconds(sec);
-    console.log("timestamp", time);
+    const timestamp = await vote.getTimestamp();
+    const timeCurrent = new Date().valueOf();
+    console.log('time current', timeCurrent);
+    const time = timestamp.mul(10 ** 3).toNumber();
+    setTime(time)
+
   };
+
+  useEffect(() => {
+    const countDownDate = time;
+    var x = setInterval(function () {
+      var now = new Date().getTime();
+
+      var distance = countDownDate - now;
+      var day = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var second = Math.floor((distance % (1000 * 60)) / 1000);
+
+      setHours(hour);
+      setMinutes(minute);
+      setSeconds(second);
+      setDays(day)
+
+      console.log('time', days, hours, minutes, seconds);
+
+    }, 1000);
+    return () => {
+      clearInterval(x);
+    }
+  },[time])
 
   const checkVote = async () => {
     const signer = getSigner();
@@ -88,16 +111,10 @@ const VoteForm = () => {
     setCheck(check);
   };
 
-  setTimeout(() => {
-    getTimestamp();
-  }, 1000);
-
+ 
   useEffect(() => {
     checkVote();
-    // getTimestamp();
-    // setInterval(() => {
-    //   getTimestamp();
-    // }, 1000);
+    getTimestamp();
   }, []);
 
   var settings = {
@@ -153,7 +170,7 @@ const VoteForm = () => {
       <h1 className="flex font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand ?
         <p className="text-white text-xl ml-auto">
-          {hours}:{minutes}:{seconds}
+          {days} Days {hours}:{minutes}:{seconds}
         </p>
       </h1>
       <p className="text-center md:text-lg text-sm text-blue-500 pb-2 mt-2">
@@ -174,11 +191,10 @@ const VoteForm = () => {
               <div className="flex justify-center">
                 <button
                   className={`fixed bottom-5 rounded-full transition duration-300  md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white 
-                ${
-                  check
-                    ? "cursor-not-allowed bg-gradient-to-b from-gray-500 to-gray-500 hover:bg-gray-400 text-gray-600"
-                    : "hover:scale-110 cursor-pointer"
-                }`}
+                ${check
+                      ? "cursor-not-allowed bg-gradient-to-b from-gray-500 to-gray-500 hover:bg-gray-400 text-gray-600"
+                      : "hover:scale-110 cursor-pointer"
+                    }`}
                   onClick={() => Voter(detail.id)}
                   disabled={check}
                   type="button"
