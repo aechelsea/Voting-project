@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Vote from "../pages/vote";
 import { connectWallet, getWalletAddress } from "../services/wallet-services";
 import Topbars from "./Topbars";
 import VoteForm from "./VoteForm";
