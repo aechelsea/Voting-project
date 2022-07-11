@@ -44,6 +44,7 @@ const VoteForm = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+
   const Voter = async (id: number) => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
@@ -154,7 +155,7 @@ const VoteForm = () => {
       </p>
       <Slider {...settings}>
         {data.map((detail, index) => (
-          <div key={index} className="flex flex-col sm:flex-row ml-2 md:ml-16">
+          <div key={index} className="flex flex-col sm:flex-row ml-2 md:ml-28">
             <div className="w-28 h-64 sm:w-28 sm:h-64 md:w-40 md:h-80 lg:w-60 lg:h-96 xl:w-72 xl:h-96 bg-lightbg border border-bdbox1 rounded-3xl">
               <img
                 src={detail.image}
@@ -169,7 +170,7 @@ const VoteForm = () => {
                   className={`fixed bottom-5 rounded-full transition duration-300  md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white 
                 ${
                   check
-                    ? "cursor-not-allowed bg-gray-100 hover:bg-gray-400"
+                    ? "cursor-not-allowed bg-gradient-to-b from-gray-500 to-gray-500 hover:bg-gray-400 text-gray-600"
                     : "hover:scale-110 cursor-pointer"
                 }`}
                   onClick={() => Voter(detail.id)}
