@@ -88,10 +88,16 @@ const VoteForm = () => {
     setCheck(check);
   };
 
+  setTimeout(() => {
+    getTimestamp();
+  }, 1000);
+
   useEffect(() => {
     checkVote();
     // getTimestamp();
-    setInterval(getTimestamp, 1000);
+    // setInterval(() => {
+    //   getTimestamp();
+    // }, 1000);
   }, []);
 
   var settings = {
