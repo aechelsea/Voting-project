@@ -77,18 +77,19 @@ const VoteForm = () => {
   useEffect(() => {
     const countDownDate = time;
     var x = setInterval(function () {
-      var now = new Date().getTime();
-      var distance = countDownDate - now;
-      var day = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var second = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setHours(hour);
-      setMinutes(minute);
-      setSeconds(second);
-      setDays(day)
-      console.log('time', days, hours, minutes, seconds);
+      if(countDownDate){
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var day = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var second = Math.floor((distance % (1000 * 60)) / 1000);
+        setHours(hour);
+        setMinutes(minute);
+        setSeconds(second);
+        setDays(day)
+        console.log('time', days, hours, minutes, seconds);
+      }
     }, 1000);
     return () => {
       clearInterval(x);
@@ -164,7 +165,7 @@ const VoteForm = () => {
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
       <h1 className="flex font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand ?
-        {time ? (
+        {time!=0 ? (
           <p className="text-white text-xl ml-auto">
             {days} Days {hours}:{minutes}:{seconds}
           </p>
