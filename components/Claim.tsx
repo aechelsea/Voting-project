@@ -51,6 +51,7 @@ const Claim = () => {
       </h2>
 
       <div className="flex justify-center">
+        {}
         <button
           className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-1 px-4 mt-6"
           onClick={() => claimReward()}

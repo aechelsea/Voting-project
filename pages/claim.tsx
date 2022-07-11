@@ -13,14 +13,16 @@ const ClaimPage = () => {
     setAddress(addr);
   };
   useEffect(() => {
-    accountData();
-    //show realtime
-    const handleAccountChange = (addresses: string[]) => {
-      setAddress(addresses[0]);
+    setTimeout(() => {
       accountData();
-    };
-    getEthereum()?.on("accountsChanged", handleAccountChange);
-  },[]);
+      //show realtime
+      const handleAccountChange = (addresses: string[]) => {
+        setAddress(addresses[0]);
+        accountData();
+      };
+      getEthereum()?.on("accountsChanged", handleAccountChange);
+    }, 1000)
+  }, []);
 
   return (
     <div className="bg-darkbg min-h-screen">
