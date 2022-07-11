@@ -43,7 +43,7 @@ const Topbars = () => {
         <p>{address?.slice(0, 5) + `...` + address?.slice(-4)}</p>
       </div>
       <footer className="fixed bottom-0 inset-x-0 text-center mb-2 md:text-xl text-sm text-transparent bg-clip-text bg-gradient-to-r from-purple-700 to-tpurple">
-        Powerby: Finstable-Trainee1
+        Power by: Finstable-Trainee1
       </footer>
     </nav>
   );

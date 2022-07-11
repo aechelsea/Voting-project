@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Skeleton } from 'antd';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -44,9 +45,8 @@ const VoteForm = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [days,setDays] = useState(0)
-
-  const [time, setTime] = useState(Date.now());
+  const [days, setDays] = useState(0)
+  const [time, setTime] = useState(0);
 
   const Voter = async (id: number) => {
     const signer = getSigner();
@@ -67,20 +67,17 @@ const VoteForm = () => {
       "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
       getProvider()
     ).connect(signer);
-    // console.log('vote',await (await vote.getReward()).toString());
     const timestamp = await vote.getTimestamp();
     const timeCurrent = new Date().valueOf();
     console.log('time current', timeCurrent);
     const time = timestamp.mul(10 ** 3).toNumber();
-    setTime(time)
-
+    setTimeout (()=>{setTime(time)},2000)
   };
 
   useEffect(() => {
     const countDownDate = time;
     var x = setInterval(function () {
       var now = new Date().getTime();
-
       var distance = countDownDate - now;
       var day = Math.floor(distance / (1000 * 60 * 60 * 24));
       var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -91,14 +88,12 @@ const VoteForm = () => {
       setMinutes(minute);
       setSeconds(second);
       setDays(day)
-
       console.log('time', days, hours, minutes, seconds);
-
     }, 1000);
     return () => {
       clearInterval(x);
     }
-  },[time])
+  }, [time])
 
   const checkVote = async () => {
     const signer = getSigner();
@@ -111,7 +106,7 @@ const VoteForm = () => {
     setCheck(check);
   };
 
- 
+
   useEffect(() => {
     checkVote();
     getTimestamp();
@@ -169,9 +164,15 @@ const VoteForm = () => {
     <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
       <h1 className="flex font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand ?
-        <p className="text-white text-xl ml-auto">
-          {days} Days {hours}:{minutes}:{seconds}
-        </p>
+        {time ? (
+          <p className="text-white text-xl ml-auto">
+            {days} Days {hours}:{minutes}:{seconds}
+          </p>
+        ) :
+          (
+            <Skeleton.Input active className="ml-auto rounded-md"/>
+        )}
+
       </h1>
       <p className="text-center md:text-lg text-sm text-blue-500 pb-2 mt-2">
         Choose the person

@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import 'antd/dist/antd.css';
 import type { AppProps } from 'next/app'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
