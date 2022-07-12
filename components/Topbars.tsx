@@ -22,7 +22,8 @@ const Topbars = () => {
         <img
           src="/mgt.png"
           alt="mgt-logo"
-          className="hidden sm:block md:w-[210px] md:h-[90px] sm:w-[210px] sm:h-[90px] w-[130px] h-[48px] md:-ml-16 -ml-16"
+          onClick={() => (location.href = "/")}
+          className="hidden sm:block md:w-[210px] md:h-[90px] sm:w-[210px] sm:h-[90px] w-[130px] h-[48px] md:-ml-16 -ml-16 cursor-pointer"
         />
         <div className="lg:mt-6 md:mt-6 sm:mt-6">
           <button
