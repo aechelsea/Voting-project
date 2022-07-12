@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import WinnnerForm from "../components/WinnnerForm";
 import Topbars from "../components/Topbars";
 import { getEthereum, getWalletAddress } from "../services/wallet-services";
+import Topbar from "../components/Topbar";
+import ConnectForm from "../components/ConnectForm";
 
 const Winner = () => {
   const [address, setAddress] = useState<string | null>(null);
@@ -39,12 +41,19 @@ const Winner = () => {
   return (
     <div className="bg-darkbg min-h-screen">
       {address ? (
-        <Topbars />
-      ) : (
-        <div className="flex justify-center w-full px-16 relative">
-          <WinnnerForm />
+        <div>
+          <Topbars />
+          <div className="flex justify-center w-full px-16 relative">
+            <WinnnerForm />
+          </div>
         </div>
-
+      ) : (
+        <div className="bg-darkbg min-h-screen">
+          <Topbar />
+          <div className="flex justify-center w-full px-16 relative">
+            <ConnectForm />
+          </div>
+        </div>
       )}
     </div>
   );
