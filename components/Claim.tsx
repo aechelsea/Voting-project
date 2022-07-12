@@ -94,7 +94,7 @@ const Claim = () => {
 
       <div className="flex justify-center">
         {time ? (
-          <p className="text-white text-lg">
+          <p className="text-white text-lg mt-6">
             {days} Days {hours}:{minutes}:{seconds}
           </p>
         )
