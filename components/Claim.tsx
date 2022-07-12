@@ -103,48 +103,55 @@ const Claim = () => {
       "0x0b31df134fd5e61ce077725eB71DD5d1809c478a",
       getProvider()
     ).connect(signer);
-    const ACT_token = await ACT.address ;
+    const ACT_token = await ACT.address;
     try {
-        // wasAdded is a boolean. Like any RPC method, an error may be thrown.
-        const wasAdded = await window.ethereum.request({
-            method: "wallet_watchAsset",
-            params: {
-                type: "ERC20", // Initially only supports ERC20, but eventually more!
-                options: {
-                    address: ACT_token, // The address that the token is at.
-                    symbol: "ACT", // A ticker symbol or shorthand, up to 5 chars.
-                    decimals: 18, // The number of decimals in the token
-                    // image: token.imageUrl, // A string url of the token logo
-                },
-            },
-        });
-        if (wasAdded) {
-            console.log("Thanks for your interest!");
-        } else {
-            console.log("Your loss!");
-        }
+      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20", // Initially only supports ERC20, but eventually more!
+          options: {
+            address: ACT_token, // The address that the token is at.
+            symbol: "ACT", // A ticker symbol or shorthand, up to 5 chars.
+            decimals: 18, // The number of decimals in the token
+            // image: token.imageUrl, // A string url of the token logo
+          },
+        },
+      });
+      if (wasAdded) {
+        console.log("Thanks for your interest!");
+      } else {
+        console.log("Your loss!");
+      }
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-};
+  };
 
   return (
     <div className="justify-center px-16 p-8 w-80 bg-gradient-to-r from-sky-900 to-darkblue-500 border border-cyan-400 rounded-3xl mt-8">
       <h1 className="text-center font-bold text-xl pb-5 text-white">
         Claim Rewards
       </h1>
+      <p className="text-center text-white">IMPORT TOKEN</p>
+      <p className="text-center flex justify-center items-center text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" className="animate-bounce h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg></p>
       <div className="ml-4 my-4 border border-bdtoken w-40 h-40 rounded-full relative hover:scale-125 transition duration-300 shadow-lg shadow-cyan-500  ">
         <img
           className="p-1 mx-2 pl-2 pt-2 sm:mx-auto object-cover w-36 h-36 cursor-pointer "
           src="token.png"
           alt=""
-          onClick={()=>addTokenToWallet()}
+          onClick={() => addTokenToWallet()}
         />
       </div>
-      <h2 className="inline text-lg ml-4 font-bold text-gray-400 text-center">
-        Rewards: <a className="text-white text-sm">{rewards} ACT</a>
-        <img className="inline" src="eth.png" alt="eth" width="30px" />
-      </h2>
+      <div className=" mt-8">
+        <h2 className="inline text-lg ml-4 font-bold text-gray-400 text-center mt-4">
+          Rewards: <a className="text-white text-sm">{rewards} ACT</a>
+          <img className="inline" src="eth.png" alt="eth" width="30px" />
+        </h2>
+      </div>
 
       <div className="flex justify-center">
         {time ? (
