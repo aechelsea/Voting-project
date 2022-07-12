@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
-import { getProvider, getSigner } from "../services/wallet-services";
-import { Vote__factory } from "../typechain";
+import { getProvider, getSigner, getWalletAddress } from "../services/wallet-services";
+import { ACToken__factory, Vote__factory } from "../typechain";
 
 const Claim = () => {
   const [rewards, setRewards] = useState("");
@@ -10,6 +10,14 @@ const Claim = () => {
   const [seconds, setSeconds] = useState(0);
   const [days, setDays] = useState(0)
   const [time, setTime] = useState(0);
+  const [check, setCheck] = useState(true);
+
+  const [address, setAddress] = useState<string | null>(null);
+  const accountData = async () => {
+    const addr = getWalletAddress(); //user address
+    // console.log(addr);
+    setAddress(addr);
+  };
 
   const reward = async () => {
     const signer = getSigner();
@@ -36,6 +44,7 @@ const Claim = () => {
   };
   console.log(rewards);
 
+
   const getTimestamp = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
@@ -43,11 +52,23 @@ const Claim = () => {
       getProvider()
     ).connect(signer);
     const timestamp = await vote.getTimestamp();
-    const timeCurrent = new Date().valueOf();
-    console.log('time current', timeCurrent);
+    // const timeCurrent = new Date().valueOf();
+    // console.log('time current', timeCurrent);
     const time = timestamp.mul(10 ** 3).toNumber();
     setTime(time)
+
   };
+
+  const checkAddr = async () => {
+    const signer = getSigner();
+    const addr = Vote__factory.connect(
+      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      getProvider()
+    ).connect(signer);
+    const addrWinning = await (await addr.voters(address!)).vote;
+    const winning = await addr.winning()
+    setCheck(addrWinning == winning)
+  }
 
   useEffect(() => {
     const countDownDate = time;
@@ -63,7 +84,7 @@ const Claim = () => {
       setMinutes(minute);
       setSeconds(second);
       setDays(day)
-      console.log('time', days, hours, minutes, seconds);
+      // console.log('time', days, hours, minutes, seconds);
     }, 1000);
     return () => {
       clearInterval(x);
@@ -73,18 +94,51 @@ const Claim = () => {
   useEffect(() => {
     reward();
     getTimestamp();
+    accountData();
   }, []);
 
+  const addTokenToWallet = async () => {
+    const signer = getSigner();
+    const ACT = ACToken__factory.connect(
+      "0x0b31df134fd5e61ce077725eB71DD5d1809c478a",
+      getProvider()
+    ).connect(signer);
+    const ACT_token = await ACT.address ;
+    try {
+        // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+        const wasAdded = await window.ethereum.request({
+            method: "wallet_watchAsset",
+            params: {
+                type: "ERC20", // Initially only supports ERC20, but eventually more!
+                options: {
+                    address: ACT_token, // The address that the token is at.
+                    symbol: "ACT", // A ticker symbol or shorthand, up to 5 chars.
+                    decimals: 18, // The number of decimals in the token
+                    // image: token.imageUrl, // A string url of the token logo
+                },
+            },
+        });
+        if (wasAdded) {
+            console.log("Thanks for your interest!");
+        } else {
+            console.log("Your loss!");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
   return (
-    <div className="justify-center px-16 p-8 w-80 bg-gradient-to-r from-sky-900 to-darkblue-500 border border-cyan-400 rounded-3xl">
+    <div className="justify-center px-16 p-8 w-80 bg-gradient-to-r from-sky-900 to-darkblue-500 border border-cyan-400 rounded-3xl mt-8">
       <h1 className="text-center font-bold text-xl pb-5 text-white">
         Claim Rewards
       </h1>
-      <div className="ml-4 my-4 border border-bdtoken w-40 h-40 rounded-full relative">
+      <div className="ml-4 my-4 border border-bdtoken w-40 h-40 rounded-full relative hover:scale-125 transition duration-300 shadow-lg shadow-cyan-500  ">
         <img
-          className="p-1 ml-2 pl-2 pt-2 sm:mx-auto object-cover w-36 h-36"
+          className="p-1 mx-2 pl-2 pt-2 sm:mx-auto object-cover w-36 h-36 cursor-pointer "
           src="token.png"
           alt=""
+          onClick={()=>addTokenToWallet()}
         />
       </div>
       <h2 className="inline text-lg ml-4 font-bold text-gray-400 text-center">
@@ -103,6 +157,7 @@ const Claim = () => {
             <button
               className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-1 px-4 mt-6"
               onClick={() => claimReward()}
+              disabled={check}
             >
               ACCEPT
             </button>

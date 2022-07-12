@@ -27,7 +27,7 @@ const Topbars = () => {
         <div className="lg:mt-6 md:mt-6 sm:mt-6">
           <button
             className="rounded-xl mt-4 ml-auto md:px-8 sm:px-8 px-2 py-1 bg-orange-400  text-white md:text-base text-xs font-bold "
-            onClick={() => (location.href = "/claim")}
+            onClick={() => (location.href = "/winner")}
           >
             Claim
           </button>
