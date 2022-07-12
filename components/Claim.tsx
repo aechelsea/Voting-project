@@ -136,7 +136,7 @@ const Claim = () => {
       <p className="text-center text-white">IMPORT TOKEN</p>
       <p className="text-center flex justify-center items-center text-white">
         <svg xmlns="http://www.w3.org/2000/svg" className="animate-bounce h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+          <path fillRule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
         </svg></p>
       <div className="ml-4 my-4 border border-bdtoken w-40 h-40 rounded-full relative hover:scale-125 transition duration-300 shadow-lg shadow-cyan-500  ">
         <img
