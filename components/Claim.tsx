@@ -1,6 +1,10 @@
 import { ethers } from "ethers";
 import React, { useEffect, useState } from "react";
-import { getProvider, getSigner, getWalletAddress } from "../services/wallet-services";
+import {
+  getProvider,
+  getSigner,
+  getWalletAddress,
+} from "../services/wallet-services";
 import { ACToken__factory, Vote__factory } from "../typechain";
 
 const Claim = () => {
@@ -8,7 +12,7 @@ const Claim = () => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [days, setDays] = useState(0)
+  const [days, setDays] = useState(0);
   const [time, setTime] = useState(0);
   const [check, setCheck] = useState(true);
 
@@ -44,7 +48,6 @@ const Claim = () => {
   };
   console.log(rewards);
 
-
   const getTimestamp = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
@@ -55,8 +58,7 @@ const Claim = () => {
     // const timeCurrent = new Date().valueOf();
     // console.log('time current', timeCurrent);
     const time = timestamp.mul(10 ** 3).toNumber();
-    setTime(time)
-
+    setTime(time);
   };
 
   const checkAddr = async () => {
@@ -66,9 +68,9 @@ const Claim = () => {
       getProvider()
     ).connect(signer);
     const addrWinning = await (await addr.voters(address!)).vote;
-    const winning = await addr.winning()
-    setCheck(addrWinning == winning)
-  }
+    const winning = await addr.winning();
+    setCheck(addrWinning == winning);
+  };
 
   useEffect(() => {
     const countDownDate = time;
@@ -76,20 +78,22 @@ const Claim = () => {
       var now = new Date().getTime();
       var distance = countDownDate - now;
       var day = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hour = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var hour = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
       var minute = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       var second = Math.floor((distance % (1000 * 60)) / 1000);
 
       setHours(hour);
       setMinutes(minute);
       setSeconds(second);
-      setDays(day)
+      setDays(day);
       // console.log('time', days, hours, minutes, seconds);
     }, 1000);
     return () => {
       clearInterval(x);
-    }
-  }, [time])
+    };
+  }, [time]);
 
   useEffect(() => {
     reward();
@@ -135,9 +139,19 @@ const Claim = () => {
       </h1>
       <p className="text-center text-white">IMPORT TOKEN</p>
       <p className="text-center flex justify-center items-center text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" className="animate-bounce h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clipRule="evenodd" />
-        </svg></p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="animate-bounce h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </p>
       <div className="ml-4 my-4 border border-bdtoken w-40 h-40 rounded-full relative hover:scale-125 transition duration-300 shadow-lg shadow-cyan-500  ">
         <img
           className="p-1 mx-2 pl-2 pt-2 sm:mx-auto object-cover w-36 h-36 cursor-pointer "
@@ -158,19 +172,15 @@ const Claim = () => {
           <p className="text-white text-lg mt-6">
             {days} Days {hours}:{minutes}:{seconds}
           </p>
-        )
-          :
-          (
-            <button
-              className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-1 px-4 mt-6"
-              onClick={() => claimReward()}
-              disabled={check}
-            >
-              ACCEPT
-            </button>
-          )
-        }
-
+        ) : (
+          <button
+            className="rounded-full bg-green-400 hover:bg-green-500  text-white md:text-lg font-bold md:px-8 py-1 px-4 mt-6"
+            onClick={() => claimReward()}
+            disabled={check}
+          >
+            ACCEPT
+          </button>
+        )}
       </div>
     </div>
   );
