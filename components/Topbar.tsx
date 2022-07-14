@@ -8,7 +8,7 @@ const Topbar = (props: any) => {
           <img
             src="/mgt.png"
             alt="mgt-logo"
-            className="hidden sm:block w-[210px] h-[90px] -ml-16"
+            className="w-[210px] h-[90px] -ml-16"
           />
         </div>
         {/* <button className="rounded-full bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-xl text-xs font-bold md:px-16 py-3 sm:px-8 mt-4"></button> */}

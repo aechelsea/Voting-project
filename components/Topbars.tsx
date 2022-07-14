@@ -17,7 +17,7 @@ const Topbars = () => {
     getEthereum()?.on("accountsChanged", handleAccountChange);
   });
   return (
-    <nav className="flex justify-between items-center ml-6 px-16 py-4 bg-darkbg">
+    <nav className="flex justify-between items-center ml-10 px-12 py-4 bg-darkbg">
       <div className="flex">
         <img
           src="/mgt.png"
@@ -35,12 +35,11 @@ const Topbars = () => {
         </div>
       </div>
       <img
-        className="ml-auto -mr-6 mt-3 z-0"
+        className="ml-auto -mr-6 mt-3 z-0 h-6 md:h-10 lg:h-10"
         src="MetaMask-Logo.png"
         alt="eth"
-        width="64px"
       />
-      <div className="rounded-full md:px-8 sm:px-8 px-2 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold  flex items-center justify-center ">
+      <div className="rounded-full md:px-8 sm:px-8 px-1 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold  flex items-center justify-center ">
         <p className="my-2">
           {address?.slice(0, 5) + `...` + address?.slice(-4)}
         </p>
