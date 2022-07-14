@@ -31,12 +31,14 @@ const ConnectForm = () => {
             </p>
           </div>
         </div>
-        <button
-          className="rounded-full bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple text-center text-white md:text-xl text-xs font-bold  py-3 mt-4"
-          onClick={connectWallet}
-        >
-          Connect
-        </button>
+        <div className="flex justify-center">
+          <button
+            className="rounded-full px-2 md:px-16 sm:px-12 py-3 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple text-center text-white md:text-xl text-xs font-bold  "
+            onClick={connectWallet}
+          >
+            Connect
+          </button>
+        </div>
       </div>
     </div>
   );
