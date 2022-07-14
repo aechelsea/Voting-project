@@ -17,13 +17,13 @@ const Topbars = () => {
     getEthereum()?.on("accountsChanged", handleAccountChange);
   });
   return (
-    <nav className="flex justify-between items-center px-20 py-4 bg-darkbg">
+    <nav className="flex justify-between items-center ml-6 px-16 py-4 bg-darkbg">
       <div className="flex">
         <img
           src="/mgt.png"
           alt="mgt-logo"
           onClick={() => (location.href = "/")}
-          className="hidden sm:block md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px] w-[130px] h-[48px] md:-ml-16 -ml-16 cursor-pointer"
+          className="md:w-[180px] md:h-[90px] sm:w-[180px] sm:h-[90px] w-[100px] h-[48px] md:-ml-16 -ml-16 cursor-pointer"
         />
         <div className="lg:mt-6 md:mt-6 sm:mt-6">
           <button
@@ -40,7 +40,7 @@ const Topbars = () => {
         alt="eth"
         width="64px"
       />
-      <div className="rounded-full md:px-8 sm:px-8 px-2 py-1 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold  flex items-center justify-center ">
+      <div className="rounded-full md:px-8 sm:px-8 px-2 mt-4 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white md:text-base text-xs font-bold  flex items-center justify-center ">
         <p className="my-2">
           {address?.slice(0, 5) + `...` + address?.slice(-4)}
         </p>

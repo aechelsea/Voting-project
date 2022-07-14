@@ -150,7 +150,7 @@ const VoteForm = () => {
   };
 
   return (
-    <div className="p-8 bg-bluebg border border-bdpurple rounded-3xl">
+    <div className="p-12 bg-bluebg border border-bdpurple rounded-3xl">
       <h1 className="flex font-bold italic md:text-3xl text-sm pb-5 text-fuchsia-500 border-b-2 border-bdpurple">
         Which is your favorite miss grand thailand ?
         {time != 0 ? (
@@ -166,19 +166,19 @@ const VoteForm = () => {
       </p>
       <Slider {...settings}>
         {data.map((detail, index) => (
-          <div key={index} className="ml-4 md:mx-4 lg:ml-4 xl:ml-16">
-            <div className="w-24 h-64 md:w-40 md:h-80 lg:w-60 lg:h-96 xl:w-72 xl:h-96 bg-lightbg border border-bdbox1 rounded-3xl">
+          <div key={index} className="px-2 sm:px-6 md:px-6 lg:w-full">
+            <div className="flex flex-col bg-lightbg border border-bdbox1 rounded-3xl relative">
               <img
                 src={detail.image}
-                className="h-20 w-20 md:h-36 md:w-36 lg:w-48 lg:h-48  object-cover object-top rounded-full mx-auto mt-8 border border-purple-500"
+                className="h-20 w-20 md:h-32 md:w-32 lg:w-40 lg:h-40  object-cover object-top rounded-full mx-auto mt-8 border border-purple-500"
                 alt="image"
               />
-              <p className="text-center md:text-base text-xs font-bold text-torange mt-6">
+              <p className="max-h-10 min-h-[40px] text-center md:text-base text-xs font-bold text-torange mt-6">
                 {detail.number}
               </p>
-              <div className="flex justify-center">
+              <div className="flex justify-center mb-2">
                 <button
-                  className={`fixed bottom-5 rounded-full transition duration-300  md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 mt-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white 
+                  className={`rounded-full transition duration-300  md:text-xl text-xs font-bold px-8 -py-1 md:px-10 sm:px-8 bg-gradient-to-b from-indigo-500 to-darkblue-500 hover:bg-purple-700 border-2 border-bdpurple  text-white 
                 ${
                   check
                     ? "cursor-not-allowed bg-gradient-to-b from-gray-500 to-gray-500 hover:bg-gray-400 text-gray-600"
