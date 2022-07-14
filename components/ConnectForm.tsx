@@ -1,8 +1,5 @@
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { connectWallet, getWalletAddress } from "../services/wallet-services";
-import Topbars from "./Topbars";
-import VoteForm from "./VoteForm";
 
 const ConnectForm = () => {
   const [address, setAddress] = useState<String | null>(null);
@@ -16,20 +13,18 @@ const ConnectForm = () => {
   }, []);
 
   return (
-    <div className="max-w-md mx-auto rounded-3xl shadow-eshadow shadow-blueshadow w-1/3 py-5 px-10 mt-10 bg-lightbg">
-      <div className="flex flex-col justify-center">
-        <div>
-          <img
-            title="Click to connect metamask"
-            src="/MetaMask-Logo.png"
-            alt="MetaMask-logo"
-            className="sm:mx-auto object-cover md:h-28 sm:w-48"
-          />
-          <div className="flex justify-center">
-            <p className="md:text-3xl text-sm font-bold text-white text-center my-10">
-              Connect to <a className="text-darkorange">Metamask</a>
-            </p>
-          </div>
+    <div className="max-w-md mx-auto rounded-3xl shadow-eshadow shadow-blueshadow w-50 md:w-1/3 py-5 px-2 mt-10 bg-lightbg">
+      <div className="flex flex-col justify-center items-center">
+        <img
+          title="Click to connect metamask"
+          src="/MetaMask-Logo.png"
+          alt="MetaMask-logo"
+          className="sm:mx-auto object-cover md:h-28 sm:w-48 w-20"
+        />
+        <div className="flex justify-center">
+          <p className="md:text-3xl text-sm font-bold text-white text-center my-10">
+            Connect to <a className="text-darkorange">Metamask</a>
+          </p>
         </div>
         <div className="flex justify-center">
           <button
