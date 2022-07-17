@@ -41,7 +41,7 @@ const WinnnerForm = () => {
   const winningCount = async () => {
     const signer = getSigner();
     const winning = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const countWinner = await (await winning.winnerVoteCount()).toString();

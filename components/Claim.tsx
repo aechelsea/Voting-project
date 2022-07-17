@@ -26,7 +26,7 @@ const Claim = () => {
   const reward = async () => {
     const signer = getSigner();
     const claim = await Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const getReward = await claim.getReward();
@@ -41,7 +41,7 @@ const Claim = () => {
   const claimReward = async () => {
     const signer = getSigner();
     const claim = await Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const claimReward = await claim.claimReward();
@@ -51,7 +51,7 @@ const Claim = () => {
   const getTimestamp = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const timestamp = await vote.getTimestamp();
@@ -64,7 +64,7 @@ const Claim = () => {
   const checkAddr = async () => {
     const signer = getSigner();
     const addr = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const addrWinning = await (await addr.voters(address!)).vote;
@@ -170,7 +170,7 @@ const Claim = () => {
       <div className="flex justify-center">
         {time ? (
           <p className="text-white text-lg mt-6">
-            {days} Days {hours}:{minutes}:{seconds}
+            {days} Days {hours.toString().padStart(2,'0')}:{minutes.toString().padStart(2,'0')}:{seconds.toString().padStart(2,'0')}
           </p>
         ) : (
           <button

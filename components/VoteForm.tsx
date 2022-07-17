@@ -51,7 +51,7 @@ const VoteForm = () => {
   const Voter = async (id: number) => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     // console.log('vote',await (await vote.getReward()).toString());
@@ -64,7 +64,7 @@ const VoteForm = () => {
   const getTimestamp = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const timestamp = await vote.getTimestamp();
@@ -103,7 +103,7 @@ const VoteForm = () => {
   const checkVote = async () => {
     const signer = getSigner();
     const vote = Vote__factory.connect(
-      "0x05A4FD94BF6258bd84A945fE44fBa3A8401BF87E",
+      "0x2e7B07861b0A2d62382132c30d907951D9fFeBFF",
       getProvider()
     ).connect(signer);
     const check = await (await vote.voters(await signer.getAddress())).voted;
@@ -155,7 +155,7 @@ const VoteForm = () => {
         Which is your favorite miss grand thailand ?
         {time != 0 ? (
           <p className="text-white text-sm md:text-sm lg:text-xl ml-auto">
-            {days} Days {hours}:{minutes}:{seconds}
+            {days} Days {hours.toString().padStart(2,'0')}:{minutes.toString().padStart(2,'0')}:{seconds.toString().padStart(2,'0')}
           </p>
         ) : (
           <Skeleton.Input active className="ml-auto rounded-md" />
